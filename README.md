@@ -1,6 +1,6 @@
 # Employee Task Manager — Full Stack
 
-A full-stack rewrite of the original Employee Task Manager: **Spring Boot + Spring Data JPA + H2/MySQL** on the
+A full-stack rewrite of the original Employee Task Manager: **Spring Boot + Spring Data + MySQL** on the
 backend, talking over a real REST API to the **HTML/CSS/JS** frontend (served by Spring Boot itself, so it's a
 single app you run with one command).
 
