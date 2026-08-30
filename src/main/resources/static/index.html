@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ROLE SELECTION -->
+    <div id="roleSelection" class="auth-container">
+        <div class="card" style="max-width: 500px;">
+            <div class="brand">📋 TaskManager</div>
+            <h2>Welcome back</h2>
+            <p class="muted">Please select your portal to continue</p>
+
+            <div class="role-grid">
+                <div class="role-box" onclick="selectRole('ADMIN')">
+                    <div class="role-icon" style="background: #eff6ff; color: #2563eb;">👑</div>
+                    <h3>Administrator</h3>
+                    <p>Manage staff and assign tasks</p>
+                </div>
+                <div class="role-box" onclick="selectRole('EMPLOYEE')">
+                    <div class="role-icon" style="background: #ecfdf5; color: #10b981;">💼</div>
+                    <h3>Employee</h3>
+                    <p>View your assigned work</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="authScreen" class="auth-container hidden">
+        <div class="card">
+            <button class="back-btn" onclick="goBackToRoles()">← Back</button>
+            <h2 id="loginTitle">Login</h2>
+            <p id="loginHint" class="muted small"></p>
+
+            <div class="form-group">
+                <input type="text" id="loginUser" placeholder="Username" autocomplete="username">
+                <input type="password" id="loginPass" placeholder="Password" autocomplete="current-password">
+                <div id="loginError" class="error-msg hidden"></div>
+                <button id="loginBtn" onclick="handleLogin()">Secure Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD -->
+    <div id="adminDashboard" class="dashboard-container hidden">
+        <aside class="sidebar">
+            <div class="user-profile">
+                <div class="avatar" style="background: #2563eb;">A</div>
+                <h3 id="adminName">System Admin</h3>
+                <span class="role-badge">Administrator</span>
+            </div>
+            <nav class="menu">
+                <a href="#" class="active">📋 Manage Tasks</a>
+                <a href="#" onclick="handleLogout()" class="logout-btn">🚪 Logout</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>Admin Dashboard</h1>
+            </header>
+            <section class="dashboard-grid">
+
+                <div class="dashboard-card">
+                    <h3>Add Employee</h3>
+                    <div class="form-group-row">
+                        <input type="text" id="newEmpName" placeholder="Full Name">
+                        <input type="text" id="newEmpUsername" placeholder="Username">
+                        <input type="password" id="newEmpPassword" placeholder="Password">
+                        <button onclick="createEmployee()">Add</button>
+                    </div>
+                    <div id="empError" class="error-msg hidden"></div>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Assign New Task</h3>
+                    <div class="form-group-row">
+                        <select id="empSelect"></select>
+                        <input type="text" id="taskTitle" placeholder="Task Details">
+                        <button onclick="assignTask()">Assign</button>
+                    </div>
+                    <div id="taskError" class="error-msg hidden"></div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header-row">
+                        <h3>All Employee Tasks</h3>
+                        <span id="taskCount" class="count-badge">0</span>
+                    </div>
+                    <ul id="adminTaskList" class="task-list"></ul>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- EMPLOYEE DASHBOARD -->
+    <div id="employeeDashboard" class="dashboard-container hidden">
+        <aside class="sidebar" style="background: #0f172a;">
+            <div class="user-profile">
+                <div class="avatar" style="background: #10b981;" id="empAvatar">E</div>
+                <h3 id="employeeName">Employee</h3>
+                <span class="role-badge">Employee</span>
+            </div>
+            <nav class="menu">
+                <a href="#" class="active">📋 My Tasks</a>
+                <a href="#" onclick="handleLogout()" class="logout-btn">🚪 Logout</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <h1>Employee Portal</h1>
+            </header>
+            <section class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>My Assigned Tasks</h3>
+                    <ul id="employeeTaskList" class="task-list"></ul>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
